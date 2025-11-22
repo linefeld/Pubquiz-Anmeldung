@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
 import { Card } from './ui/card';
 import { Trophy } from 'lucide-react';
-import type { GroupRegistration } from '../App';
+import type { PersonRegistration } from '../App';
 
 interface RegisteredTeamsProps {
-  registrations: GroupRegistration[];
+  registrations: PersonRegistration[];
 }
 
 export function RegisteredTeams({ registrations }: RegisteredTeamsProps) {
-  const totalParticipants = registrations.reduce((sum, reg) => sum + reg.members.length, 0);
+  const totalParticipants = registrations.length;
   
   // Get all participant names
-  const allNames = registrations.flatMap(reg => reg.members);
+  const allNames = registrations.map(reg => reg.name);
   
   // State for sliding animation
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -38,7 +38,7 @@ export function RegisteredTeams({ registrations }: RegisteredTeamsProps) {
         <div className="p-8 bg-gradient-to-r from-purple-100 to-pink-100 rounded-lg overflow-hidden">
           <div className="text-center">
             <p className="text-gray-600 mb-4">
-              {totalParticipants} {totalParticipants === 1 ? 'Teilnehmer' : 'Teilnehmer'} in {registrations.length} {registrations.length === 1 ? 'Gruppe' : 'Gruppen'}
+              {totalParticipants} {totalParticipants === 1 ? 'Teilnehmer' : 'Teilnehmer'}
             </p>
             <div className="h-16 flex items-center justify-center">
               <div
@@ -56,7 +56,7 @@ export function RegisteredTeams({ registrations }: RegisteredTeamsProps) {
       ) : (
         <div className="p-8 bg-gradient-to-r from-purple-100 to-pink-100 rounded-lg text-center">
           <p className="text-gray-600">Noch keine Teilnehmer angemeldet</p>
-          <p className="text-gray-500 mt-2">Sei die erste Gruppe!</p>
+          <p className="text-gray-500 mt-2">Sei der/die Erste!</p>
         </div>
       )}
 

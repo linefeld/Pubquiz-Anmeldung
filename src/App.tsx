@@ -6,9 +6,9 @@ import { Beer, Users } from 'lucide-react';
 import { Toaster, toast } from 'sonner';
 import { projectId, publicAnonKey } from './utils/supabase/info';
 
-export interface GroupRegistration {
+export interface PersonRegistration {
   id: string;
-  members: string[];
+  name: string;
   mannschaft: string;
   timestamp: number;
 }
@@ -16,7 +16,7 @@ export interface GroupRegistration {
 const API_URL = `https://${projectId}.supabase.co/functions/v1/make-server-aa1c64f0`;
 
 export default function App() {
-  const [registrations, setRegistrations] = useState<GroupRegistration[]>([]);
+  const [registrations, setRegistrations] = useState<PersonRegistration[]>([]);
   const [loading, setLoading] = useState(true);
   const deadline = new Date('2025-12-31T23:59:59');
 
@@ -38,7 +38,7 @@ export default function App() {
       }
 
       const data = await response.json();
-      setRegistrations(data.groups || []);
+      setRegistrations(data.persons || []);
     } catch (error) {
       console.error('Error loading registrations:', error);
       toast.error('Fehler beim Laden der Anmeldungen');
@@ -47,7 +47,7 @@ export default function App() {
     }
   };
 
-  const handleRegistration = async (registration: Omit<GroupRegistration, 'id' | 'timestamp'>) => {
+  const handleRegistration = async (registration: Omit<PersonRegistration, 'id' | 'timestamp'>) => {
     try {
       const response = await fetch(`${API_URL}/groups`, {
         method: 'POST',
@@ -66,10 +66,10 @@ export default function App() {
       const data = await response.json();
       
       // Add the new registration to the list
-      setRegistrations(prev => [data.group, ...prev]);
+      setRegistrations(prev => [data.person, ...prev]);
 
       toast.success('Erfolgreich angemeldet!', {
-        description: 'Eure Gruppe wurde erfolgreich zum Pubquiz angemeldet.',
+        description: 'Du wurdest erfolgreich zum Pubquiz angemeldet.',
         duration: 5000,
       });
     } catch (error) {
@@ -101,14 +101,13 @@ export default function App() {
             <h2 className="text-purple-900">Anmeldung</h2>
             <Users className="w-12 h-12 text-purple-600" />
           </div>
-          <p className="text-purple-700 mb-2">kreaktivis e.V.</p>
-          <p className="text-gray-600">Meldet euch als Gruppe an - Teams werden später zusammengestellt!</p>
+          <p className="text-purple-700 mb-2">KreAktivis e.V.</p>
         </div>
 
         {/* Info Box */}
         <div className="p-4 bg-blue-100 border-2 border-blue-300 rounded-lg text-center">
           <p className="text-blue-900">
-            💡 <strong>Hinweis:</strong> Ihr meldet euch als 2-3er Gruppe an. Später werden aus je zwei Gruppen ein Team für das Pubquiz zusammengestellt.
+            💡 <strong>Hinweis:</strong> Du meldest dich alleine an. Später werden die Teams für das Pubquiz zusammengestellt.
           </p>
         </div>
 
@@ -138,7 +137,7 @@ export default function App() {
 
         {/* Footer */}
         <div className="text-center mt-8 text-gray-500">
-          <p>Ein Event von kreaktivis e.V. - Tanzverein</p>
+          <p>Ein Event von KreAktivis e.V. - Tanzverein</p>
         </div>
       </div>
     </div>

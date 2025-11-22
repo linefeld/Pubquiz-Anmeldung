@@ -46,26 +46,26 @@ export function Countdown({ deadline }: CountdownProps) {
         <h2 className="text-purple-900">Anmeldeschluss</h2>
       </div>
       
-      <div className="grid grid-cols-4 gap-4 text-center">
-        <div className="bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg p-4">
-          <div className="text-purple-900">{timeLeft.days}</div>
-          <div className="text-purple-600">Tage</div>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-center">
+        <div className="bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg p-3 sm:p-4">
+          <div className="text-2xl sm:text-3xl font-bold text-purple-900">{timeLeft.days}</div>
+          <div className="text-xs sm:text-sm text-purple-600 mt-1">Tage</div>
         </div>
-        <div className="bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg p-4">
-          <div className="text-purple-900">{timeLeft.hours}</div>
-          <div className="text-purple-600">Stunden</div>
+        <div className="bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg p-3 sm:p-4">
+          <div className="text-2xl sm:text-3xl font-bold text-purple-900">{timeLeft.hours}</div>
+          <div className="text-xs sm:text-sm text-purple-600 mt-1">Stunden</div>
         </div>
-        <div className="bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg p-4">
-          <div className="text-purple-900">{timeLeft.minutes}</div>
-          <div className="text-purple-600">Minuten</div>
+        <div className="bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg p-3 sm:p-4">
+          <div className="text-2xl sm:text-3xl font-bold text-purple-900">{timeLeft.minutes}</div>
+          <div className="text-xs sm:text-sm text-purple-600 mt-1">Minuten</div>
         </div>
-        <div className="bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg p-4">
-          <div className="text-purple-900">{timeLeft.seconds}</div>
-          <div className="text-purple-600">Sekunden</div>
+        <div className="bg-gradient-to-br from-purple-100 to-pink-100 rounded-lg p-3 sm:p-4">
+          <div className="text-2xl sm:text-3xl font-bold text-purple-900">{timeLeft.seconds}</div>
+          <div className="text-xs sm:text-sm text-purple-600 mt-1">Sekunden</div>
         </div>
       </div>
       
-      <p className="text-center mt-4 text-gray-600">
+      <p className="text-center mt-4 text-sm sm:text-base text-gray-600">
         bis zum 31. Dezember 2025, 23:59 Uhr
       </p>
     </Card>

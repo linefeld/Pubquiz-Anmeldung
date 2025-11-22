@@ -1,11 +1,9 @@
 -- Pubquiz Registrations Table
--- This creates a clean, readable table structure for group registrations
+-- This creates a clean, readable table structure for individual registrations
 
 CREATE TABLE IF NOT EXISTS pubquiz_registrations (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  member1 TEXT NOT NULL,
-  member2 TEXT NOT NULL,
-  member3 TEXT,
+  name TEXT NOT NULL,
   mannschaft TEXT NOT NULL,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -32,7 +30,7 @@ CREATE INDEX IF NOT EXISTS idx_pubquiz_created_at ON pubquiz_registrations(creat
 CREATE OR REPLACE VIEW pubquiz_registrations_view AS
 SELECT 
   id,
-  member1 || ', ' || member2 || COALESCE(', ' || member3, '') AS mitglieder,
+  name,
   mannschaft,
   created_at,
   TO_CHAR(created_at, 'DD.MM.YYYY HH24:MI') AS anmeldung_am
